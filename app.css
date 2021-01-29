@@ -1,0 +1,34 @@
+body {
+  text-align: center;
+  background: #406278;
+  font-family: "Indie Flower", cursive;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 115px;
+  color: white;
+}
+
+.instructions {
+  font-family: inherit;
+  font-size: 50px;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+
+#canvas {
+  border: 5px solid silver;
+  position: relative;
+  top: 0;
+  z-index: 0;
+}
+
+@media (min-height: 500px) {
+  .instructions {
+    bottom: 750px;
+  }
+}
