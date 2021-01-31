@@ -1,54 +1,4 @@
-let canvas;
-let ctx;
-let ammoRoundRadius = 10;
-let fireRound;
-let ammoStart;
-let ammoY;
-let ammoX;
-let ammoWidth;
-let ammoHeight;
-let moveX = 0;
-let cloudX;
-let cloudY;
-let tankHeight;
-let tankWidth;
-let tankX;
-let tankY;
-let tankHit;
-let bomberHeight;
-let bomberWidth;
-let bomberX;
-let bomberY;
-let bomberHit;
-let moveBomber = 0;
-let drawingBomber;
-let rightPressed = false;
-let leftPressed = false;
-let score;
-let time;
-let timer;
-let moveBackground;
-let endGame;
-let timeoutID;
-let bomberSpeed;
-let dropBomb;
-let bombWidth;
-let bombHeight;
-let bombX;
-let bombY;
-let randY;
-let rect1 = {
-  x: "",
-  y: "",
-  w: "",
-  h: "",
-};
-let rect2 = {
-  x: "",
-  y: "",
-  w: "",
-  h: "",
-};
+
 
 // SETUP
 let createLayout = () => {
@@ -73,63 +23,16 @@ let createLayout = () => {
 createLayout();
 
 const createCanvas = () => {
-  let cv = document.createElement("canvas");
-  cv.setAttribute("id", "canvas");
-  cv.setAttribute("width", "1366");
-  cv.setAttribute("height", "768");
 
-  document.body.appendChild(cv);
 };
 
 createCanvas();
 
 let animate = () => {
-  requestAnimationFrame(animate);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  draw();
 };
 
-const init = () => {
-  canvas = document.getElementById("canvas");
-  ctx = canvas.getContext("2d");
 
-  time = 60;
-
-  randY = Math.floor(Math.random() * (400 - 50) + 50);
-
-  //cloudStuff
-  cloudX = Math.floor(Math.random() * (250 - 50) + 50);
-  cloudY = 1.8583333333333334 * cloudX;
-
-  //tankStuff
-  tankWidth = 150;
-  tankHeight = 0.53333 * tankWidth;
-  tankX = (canvas.width - tankWidth) / 2;
-  tankY = canvas.height - tankHeight * 1.5;
-  tankHit = false;
-
-  //bomberStuff
-  bomberHeight = 40;
-  bomberWidth = 150;
-  bomberX = canvas.width + 300;
-  bomberY = randY;
-  bomberHit = false;
-  bomberSpeed = Math.floor(Math.random() * (15 - 5) + 5);
-
-  //backgroundStuff
-  score = 0;
-
-  //ammoStuff
-  fireRound = false;
-  ammoX = tankX + tankWidth / 2;
-  ammoY = canvas.height - tankHeight;
-  ammoWidth = 8;
-  ammoHeight = 16;
-
-  timer = setInterval(updateTimer, 1000);
-  endGame = false;
-};
 
 // CONTROLS
 function keyDownHandler(e) {
@@ -277,81 +180,8 @@ const draw = () => {
   moveBomber -= bomberSpeed;
 };
 
-const drawCloud = (cloudX, cloudY) => {
-  ctx.beginPath();
-  ctx.moveTo(cloudX + moveX - canvas.width / 2, cloudY);
-
-  ctx.bezierCurveTo(
-    0.23333333333333332 * cloudX + moveX - canvas.width / 2,
-    0.9912536443148689 * cloudY,
-    0.5083333333333333 * cloudX + moveX - canvas.width / 2,
-    0.717201166180758 * cloudY,
-    0.9666666666666667 * cloudX + moveX - canvas.width / 2,
-    0.7696793002915452 * cloudY
-  );
-  ctx.bezierCurveTo(
-    0.8833333333333333 * cloudX + moveX - canvas.width / 2,
-    0.6822157434402332 * cloudY,
-    1.5 * cloudX + moveX - canvas.width / 2,
-    0.641399416909621 * cloudY,
-    1.5833333333333331 * cloudX + moveX - canvas.width / 2,
-    0.6997084548104957 * cloudY
-  );
-  ctx.bezierCurveTo(
-    1.9666666666666666 * cloudX + moveX - canvas.width / 2,
-    0.4897959183673469 * cloudY,
-    2.625 * cloudX + moveX - canvas.width / 2,
-    0.6501457725947522 * cloudY,
-    2.5166666666666666 * cloudX + moveX - canvas.width / 2,
-    0.7959183673469387 * cloudY
-  );
-  ctx.bezierCurveTo(
-    3.058333333333333 * cloudX + moveX - canvas.width / 2,
-    0.8017492711370262 * cloudY,
-    3.0416666666666663 * cloudX + moveX - canvas.width / 2,
-    0.9970845481049562 * cloudY,
-    2.5416666666666666 * cloudX + moveX - canvas.width / 2,
-    cloudY
-  );
-  ctx.lineTo(cloudX + moveX - canvas.width / 2, cloudY);
-  ctx.fillStyle = "white";
-  ctx.fill();
-  ctx.stroke();
-};
-
-const drawTank = () => {
-  ctx.beginPath();
-  ctx.rect(tankX, tankY, tankWidth, tankHeight);
-  ctx.fillStyle = "black";
-  ctx.fill();
-  ctx.closePath();
-};
-
-const drawBomber = () => {
-  console.log(randY);
-  drawingBomber = true;
-  rect1.x = bomberX + moveBomber;
-  rect1.y = bomberY;
-  rect1.w = bomberWidth;
-  rect1.h = bomberHeight;
-  ctx.beginPath();
-  ctx.rect(bomberX + moveBomber, bomberY, bomberWidth, bomberHeight);
-  ctx.fillStyle = "black";
-  ctx.fill();
-  ctx.closePath();
-};
-
 const drawAmmoRound = () => {
-  rect2.x = ammoX;
-  rect2.y = ammoY -= 5;
-  rect2.w = ammoWidth;
-  rect2.h = ammoHeight;
 
-  ctx.beginPath();
-  ctx.rect(ammoX, (ammoY -= 10), ammoWidth, ammoHeight);
-  ctx.fillStyle = "black";
-  ctx.fill();
-  ctx.closePath();
 };
 
 const drawBackground = () => {
